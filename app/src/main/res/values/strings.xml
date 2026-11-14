@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">Y5 Debloater</string>
+    <string name="app_subtitle">Huawei Y5 Prime 2018 • Shizuku</string>
+
+    <string name="status_checking">Shizuku স্ট্যাটাস চেক করা হচ্ছে...</string>
+    <string name="status_connected">Shizuku কানেক্টেড! অ্যাপে ট্যাপ করে Uninstall বা Restore করুন।</string>
+    <string name="status_permission_denied">Shizuku পারমিশন দেওয়া হয়নি।</string>
+    <string name="status_not_running">Shizuku চালু নেই! আগে ADB দিয়ে Shizuku স্টার্ট করুন।</string>
+    <string name="status_not_installed">Shizuku অ্যাপ ইনস্টল করা নেই।</string>
+
+    <string name="search_hint">অ্যাপের নাম বা প্যাকেজ নেম লিখে খুঁজুন...</string>
+    <string name="filter_all">সব</string>
+    <string name="filter_installed">ইনস্টলড</string>
+    <string name="filter_uninstalled">রিমুভড</string>
+    <string name="filter_safe_bloat">Safe Bloat</string>
+
+    <string name="action_grant_permission">পারমিশন দিন</string>
+    <string name="action_retry">পুনরায় চেক</string>
+    <string name="action_refresh">রিফ্রেশ</string>
+    <string name="action_adb_guide">ADB গাইড</string>
+    <string name="action_logs">কমান্ড লগ</string>
+    <string name="action_uninstall">Uninstall (User 0)</string>
+    <string name="action_disable">Disable App</string>
+    <string name="action_enable">Enable App</string>
+    <string name="action_restore">Restore App</string>
+    <string name="action_copy_package">প্যাকেজ কপি</string>
+    <string name="action_close">বন্ধ করুন</string>
+</resources>

@@ -1,0 +1,6 @@
+{
+  "name": "Y5 Debloater",
+  "description": "Shizuku-powered system app debloater and restorer for Huawei Y5 Prime 2018 and Android devices.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
