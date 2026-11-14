@@ -1,81 +1,93 @@
 ================================================================================
-TITLE: UNIVERSAL ANDROID SYSTEM APP DEBLOATER (SHIZUKU BASED)
-SUPPORTED DEVICES: Huawei Y5 Prime (2018) [Android 8.1] & Xiaomi Redmi Note 4 [Android 7.0+]
+TITLE: Y5 DEBLOATER (SHIZUKU BASED SYSTEM APP DEBLOATER)
+TARGET DEVICE: Huawei Y5 Prime (2018) [Android 8.1]  -- tested target
+OTHER DEVICES: Any Android 7.0+ phone with Shizuku  -- Xiaomi Redmi Note 4 NOT YET TESTED
 MINIMUM REQUIREMENT: Android 7.0 (API 24)
-PACKAGE NAME: com.example.simpledebloater
+PACKAGE NAME: com.aistudio.y5debloater.k8n4vx
+DOWNLOAD (latest APK): https://github.com/chainatelapoka-hue/y5-debloater/releases/latest/download/Y5-Debloater.apk
 ================================================================================
 
 ********************************************************************************
-PART 1: USER MANUAL (বাংলায় ব্যবহারবিধি - ধাপে ধাপে নির্দেশনা)
+PART 1: USER MANUAL (বাংলায় ব্যবহারবিধি - ধাপে ধাপে নির্দেশনা)
 ********************************************************************************
 
 --------------------------------------------------------------------------------
-ধাপ ১: অনলাইনে APK ফাইল তৈরি করা (GitHub Actions ব্যবহার করে)
+ধাপ ১: APK ফাইল ডাউনলোড করা
 --------------------------------------------------------------------------------
-আপনার কম্পিউটারে ভারী Android Studio না থাকলেও আপনি বিনামূল্যে GitHub-এর মাধ্যমে 
-অনলাইনেই .apk ফাইল তৈরি করতে পারবেন:
+সরাসরি ডাউনলোড লিংক (ফোন বা PC-তে খুলুন):
+  https://github.com/chainatelapoka-hue/y5-debloater/releases/latest/download/Y5-Debloater.apk
 
-১. প্রথমে GitHub.com-এ লগইন করে "New Repository" বাটনে ক্লিক করে একটি নতুন প্রজেক্ট 
-   তৈরি করুন (যেমন: Y5-Note4-Debloater)।
-২. নিচে "PART 3"-এ দেওয়া প্রতিটি ফাইল সঠিক ফোল্ডার কাঠামো অনুযায়ী আপনার রিপোজিটরিতে 
-   আপলোড বা তৈরি করুন (বিশেষ করে .github/workflows/build.yml ফাইলটি অবশ্যই রাখবেন)।
-৩. ফাইলগুলো সেভ হওয়ার সাথে সাথে GitHub-এর উপরের "Actions" ট্যাবে যান। সেখানে দেখবেন 
-   অটোমেটিক অ্যাপ বিল্ড হওয়া শুরু হয়েছে (সবুজ টিক চিহ্ন আসতে ২-৩ মিনিট সময় লাগবে)।
-৪. বিল্ড সফল হলে ওই রান (Run)-এর ভেতরে ঢুকে নিচে "Artifacts" সেকশন থেকে 
-   "app-debug" ফাইলটি ডাউনলোড করুন এবং Zip আনজিপ করে ভেতরের .apk ফাইলটি নিন।
+এই লিংক সবসময় সর্বশেষ বিল্ড দেবে। সব বিল্ডের তালিকা দেখতে:
+  https://github.com/chainatelapoka-hue/y5-debloater/releases
+
+ফাইল নিজে তৈরি করতে চাইলে (ঐচ্ছিক):
+১. GitHub-এর রেপোতে যান এবং "Actions" ট্যাব খুলুন।
+২. "Build APK" ওয়ার্কফ্লো বেছে নিন। প্রতিবার main ব্রাঞ্চে পরিবর্তন করলে এটি নিজে চলে।
+৩. সবুজ টিক আসার পর রানের ভেতরে "Y5-Debloater-APK" আর্টিফ্যাক্ট ডাউনলোড করুন।
+৪. Zip আনজিপ করে Y5-Debloater.apk ফাইলটি নিন।
+
+ইনস্টল করার আগে: ফোনের সেটিংসে নিজের ব্রাউজার বা ফাইল ম্যানেজারের জন্য
+"Install unknown apps" (অজানা অ্যাপ ইনস্টল) অনুমতি দিন।
 
 --------------------------------------------------------------------------------
-ধাপ ২: ফোনের সেটিংস প্রস্তুত করা (Huawei এবং Xiaomi-র জন্য আলাদা নিয়ম)
+ধাপ ২: ফোনের সেটিংস প্রস্তুত করা
 --------------------------------------------------------------------------------
-ক) Huawei Y5 Prime (2018) ফোনের জন্য:
+ক) Huawei Y5 Prime (2018) ফোনের জন্য (পরীক্ষিত):
    ১. ফোনের Settings > System > About phone-এ যান।
    ২. "Build number"-এর ওপর পরপর ৭ বার ট্যাপ করুন (Developer options চালু হবে)।
    ৩. ব্যাকে এসে Settings > System > Developer options-এ ঢুকুন।
    ৪. নিচে স্ক্রল করে "USB debugging" অপশনটি চালু (ON) করুন।
 
-খ) Xiaomi Redmi Note 4 (MIUI) ফোনের জন্য:
+খ) Xiaomi Redmi Note 4 (MIUI) ফোনের জন্য (এখনও পরীক্ষা করা হয়নি):
    ১. ফোনের Settings > About phone-এ যান এবং "MIUI version"-এর ওপর পরপর ৭ বার ট্যাপ করুন।
    ২. ব্যাকে এসে Settings > Additional settings > Developer options-এ যান।
    ৩. "USB debugging" অপশনটি চালু (ON) করুন।
-   ৪. [খুবই জরুরি] শাওমি ফোনে এর ঠিক নিচেই থাকা "USB debugging (Security settings)" 
-      অপশনটিও অবশ্যই চালু (ON) করতে হবে। এটি অন করতে ফোনে সিম কার্ড লাগানো এবং 
-      Mi Account লগইন থাকা প্রয়োজন হতে পারে।
+   ৪. [জরুরি] শাওমি ফোনে এর ঠিক নিচেই থাকা "USB debugging (Security settings)"
+      অপশনটিও চালু (ON) করতে হবে। এটি অন করতে ফোনে সিম কার্ড লাগানো এবং
+      Mi Account লগইন থাকা প্রয়োজন হতে পারে।
 
 --------------------------------------------------------------------------------
 ধাপ ৩: Shizuku অ্যাপ ইনস্টল ও চালু করা (ADB কমান্ডের মাধ্যমে)
 --------------------------------------------------------------------------------
-১. আপনার ফোনে Shizuku অ্যাপটি (v13.5.4 বা Android 7+ সাপোর্টেড ভার্সন) ইনস্টল করুন।
-২. আপনার তৈরি করা "Debloater" (.apk) অ্যাপটিও ফোনে ইনস্টল করুন।
-৩. একটি ভালো মানের USB কেবল দিয়ে ফোনটি কম্পিউটারের সাথে যুক্ত করুন এবং ফোনের স্ক্রিনে 
+১. আপনার ফোনে Shizuku অ্যাপটি (Android 7+ সাপোর্টেড ভার্সন) ইনস্টল করুন।
+২. ধাপ ১-এ ডাউনলোড করা Y5 Debloater (.apk) ফোনে ইনস্টল করুন।
+৩. একটি ভালো মানের USB কেবল দিয়ে ফোনটি কম্পিউটারের সাথে যুক্ত করুন এবং ফোনের স্ক্রিনে
    আসা পপ-আপে "Allow USB debugging" পারমিশন দিন।
-৪. কম্পিউটারে ADB (Platform-Tools) ফোল্ডারে গিয়ে Command Prompt / Terminal ওপেন 
+৪. কম্পিউটারে ADB (Platform-Tools) ফোল্ডারে গিয়ে Command Prompt / Terminal ওপেন
    করুন এবং নিচের কমান্ডটি লিখে Enter চাপুন:
-   
+
    adb shell sh /sdcard/Android/data/moe.shizuku.privileged.api/start.sh
 
-৫. কমান্ডটি সফল হলে ফোনের Shizuku অ্যাপে "Shizuku is running" লেখা দেখাবে। এবার 
+৫. কমান্ডটি সফল হলে ফোনের Shizuku অ্যাপে "Shizuku is running" লেখা দেখাবে। এবার
    আপনি ফোন থেকে USB কেবল খুলে ফেলতে পারেন।
 
 --------------------------------------------------------------------------------
-ধাপ ৪: সিস্টেম অ্যাপ আনইনস্টল ও রিস্টোর (Restore) করার নিয়ম
+ধাপ ৪: সিস্টেম অ্যাপ আনইনস্টল ও রিস্টোর (Restore) করার নিয়ম
 --------------------------------------------------------------------------------
-১. আপনার তৈরি করা "Debloater" অ্যাপটি ওপেন করুন।
-২. স্ক্রিনে Shizuku পারমিশন চাইলে "Allow all the time" দিন।
+১. আপনার Y5 Debloater অ্যাপটি ওপেন করুন।
+২. স্ক্রিনে Shizuku পারমিশন চাইলে "Allow" বা "Allow all the time" দিন।
 ৩. অ্যাপের ভেতরে আপনার ফোনের সব সিস্টেম অ্যাপের তালিকা চলে আসবে:
-   - উপরের সার্চ বক্সে অ্যাপের নাম লিখে সহজেই খুঁজে বের করুন।
-   - যেসব অ্যাপ চালু আছে সেগুলোর পাশে [Installed] লেখা থাকবে। অ্যাপে ট্যাপ করে 
-     "হ্যাঁ, Uninstall করুন" চাপলে সেটি মুছে যাবে।
-   - ভুল করে কোনো দরকারি অ্যাপ ডিলিট হয়ে গেলে সার্চ করে ওই অ্যাপের ওপর ট্যাপ করুন 
-     (পাশে [Removed - Tap to Restore] লেখা থাকবে) এবং "হ্যাঁ, Restore করুন" চাপুন।
+   - উপরের সার্চ বক্সে অ্যাপের নাম বা প্যাকেজ নেম লিখে খুঁজুন।
+   - ফিল্টার চিপ থেকে "ইনস্টলড", "রিমুভড", "ডিজেবলড" বা "Safe Bloat" বেছে নিতে পারেন।
+   - অ্যাপে ট্যাপ করে "Uninstall (User 0)" বা "Disable App" চাপলে সেটি আপনার ফোনের
+     জন্য বন্ধ হবে (অন্য ইউজার বা সিস্টেমে প্রভাব পড়বে না)।
+   - ভুল করে কোনো দরকারি অ্যাপ বন্ধ হয়ে গেলে সার্চ করে ওই অ্যাপে ট্যাপ করুন
+     এবং "Restore App" বা "Enable App" চাপুন।
+৪. প্রতিটি কমান্ডের ফলাফল অ্যাপের "কমান্ড লগ" (Terminal আইকন) থেকে দেখা যাবে।
 
 --------------------------------------------------------------------------------
 জরুরি সতর্কতা (Safety Warnings)
 --------------------------------------------------------------------------------
-- ফোন রিস্টার্ট বা বন্ধ করলে Shizuku সার্ভিসটি বন্ধ হয়ে যায়; পুনরায় ব্যবহার করতে 
+- ফোন রিস্টার্ট বা বন্ধ করলে Shizuku সার্ভিসটি বন্ধ হয়ে যায়; পুনরায় ব্যবহার করতে
   পিসি থেকে আবার ধাপ ৩-এর কমান্ডটি চালাতে হবে।
-- Huawei ফোনে "Huawei Mobile Services (HMS)" এবং Xiaomi ফোনে "Find Device", 
-  "Mi Cloud" বা "Security" অ্যাপ ভুলেও আনইনস্টল করবেন না, নতুবা ফোন বুটলুপে 
-  (Bootloop) আটকে যেতে পারে।
+- "System Core" লেবেলের অ্যাপ (যেমন Settings, Phone, Package Installer, Permission
+  Controller, Android Shell) বন্ধ করলে ফোন অকেজো হতে পারে। অ্যাপ এগুলোর আগে
+  নিশ্চিতকরণ চাইবে, তবুও সাবধান থাকুন।
+- Huawei ফোনে "Huawei Mobile Services (HMS)" এবং Xiaomi ফোনে "Find Device",
+  "Mi Cloud" বা "Security" অ্যাপ ভুলেও বন্ধ করবেন না, নতুবা ফোন বুটলুপে
+  আটকে যেতে পারে।
+- নতুন APK ইনস্টল করার সময় সাইনিং কী বদলায়, তাই আপডেট আগে আনইনস্টল করে তারপর
+  ইনস্টল করতে হতে পারে। আনইনস্টল করলে আগে বন্ধ করা অ্যাপগুলো ফিরে আসে না।
 
 
 ********************************************************************************
@@ -83,110 +95,73 @@ PART 2: USER MANUAL (ENGLISH STEP-BY-STEP GUIDE)
 ********************************************************************************
 
 --------------------------------------------------------------------------------
-STEP 1: Build the APK Online Using GitHub Actions (No Android Studio Needed)
+STEP 1: Download the APK
 --------------------------------------------------------------------------------
-1. Log in to GitHub.com and create a new repository (e.g., Android-Debloater).
-2. Upload or create all the files listed in "PART 3" following the exact folder 
-   paths (make sure to include ".github/workflows/build.yml").
-3. Navigate to the "Actions" tab in your GitHub repository. You will see an 
-   automated build workflow running. Wait 2-3 minutes until a green checkmark appears.
-4. Click on the completed workflow run, scroll down to the "Artifacts" section, 
-   and download "app-debug". Extract the ZIP file to get your installable .apk file.
+Direct download (open on phone or PC):
+  https://github.com/chainatelapoka-hue/y5-debloater/releases/latest/download/Y5-Debloater.apk
+
+This link always serves the latest build. All builds:
+  https://github.com/chainatelapoka-hue/y5-debloater/releases
+
+Optional, build it yourself on GitHub:
+1. Open the repository and go to the "Actions" tab.
+2. Pick the "Build APK" workflow. It runs automatically on every push to main.
+3. When the green check appears, open the run and download the "Y5-Debloater-APK" artifact.
+4. Unzip it to get Y5-Debloater.apk.
+
+Before installing: allow "Install unknown apps" for your browser or file manager in
+phone settings.
 
 --------------------------------------------------------------------------------
-STEP 2: Prepare Phone Settings (Device-Specific Instructions)
+STEP 2: Prepare Phone Settings
 --------------------------------------------------------------------------------
-A) For Huawei Y5 Prime (2018) [Android 8.1]:
+A) Huawei Y5 Prime (2018) [Android 8.1] (tested):
    1. Go to Settings > System > About phone.
-   2. Tap "Build number" 7 times consecutively to unlock Developer options.
+   2. Tap "Build number" 7 times to unlock Developer options.
    3. Go back to Settings > System > Developer options.
    4. Scroll down and enable "USB debugging".
 
-B) For Xiaomi Redmi Note 4 [MIUI / Android 7.0+]:
+B) Xiaomi Redmi Note 4 [MIUI / Android 7.0+] (NOT YET TESTED):
    1. Go to Settings > About phone and tap "MIUI version" 7 times.
    2. Go back to Settings > Additional settings > Developer options.
    3. Enable "USB debugging".
-   4. [CRITICAL FOR XIAOMI] Scroll slightly down and also enable "USB debugging 
-      (Security settings)". Note: MIUI requires an active SIM card and a logged-in 
-      Mi Account to toggle this setting on.
+   4. [REQUIRED ON XIAOMI] Also enable "USB debugging (Security settings)". This may
+      need an active SIM card and a logged-in Mi Account.
 
 --------------------------------------------------------------------------------
-STEP 3: Install & Start Shizuku Service via PC (ADB)
+STEP 3: Install & Start Shizuku via PC (ADB)
 --------------------------------------------------------------------------------
-1. Install the Shizuku app (a version supporting Android 7.0+, such as v13.5.4) 
-   on your phone.
-2. Install your newly built "Debloater" APK on your phone.
-3. Connect your phone to your PC via a USB cable and tap "Allow" on the USB 
-   debugging prompt on your phone screen.
-4. Open Command Prompt / Terminal inside your PC's ADB (Platform-Tools) folder 
-   and execute the following command:
+1. Install the Shizuku app (a version supporting Android 7.0+) on your phone.
+2. Install the Y5 Debloater APK from Step 1 on your phone.
+3. Connect your phone to your PC via USB and tap "Allow" on the USB debugging prompt.
+4. Open Command Prompt / Terminal in your PC's ADB (Platform-Tools) folder and run:
 
    adb shell sh /sdcard/Android/data/moe.shizuku.privileged.api/start.sh
 
-5. Once the command succeeds, open the Shizuku app to verify it says "Shizuku is 
-   running". You can now safely disconnect the USB cable.
+5. When the command succeeds, Shizuku shows "Shizuku is running". You can now
+   disconnect the USB cable.
 
 --------------------------------------------------------------------------------
 STEP 4: How to Uninstall & Restore System Apps
 --------------------------------------------------------------------------------
-1. Open the "Debloater" app on your phone and grant Shizuku permission when prompted.
-2. Use the top search bar to filter apps by name or package name.
-3. Uninstall: Tap any app marked [Installed] and confirm to uninstall it for the 
-   current user without root.
-4. Restore: If you accidentally remove a needed app, search for it (marked as 
-   [Removed - Tap to Restore]), tap it, and confirm to reinstall it instantly.
+1. Open the Y5 Debloater app and grant the Shizuku permission when prompted.
+2. Use the search bar or filter chips (Installed, Removed, Disabled, Safe Bloat).
+3. Tap an app and choose "Uninstall (User 0)" or "Disable App". This affects only your
+   user profile.
+4. Restore: if you remove a needed app by mistake, find it, tap it, and choose
+   "Restore App" or "Enable App".
+5. Every command and its result appears in the command log (Terminal icon).
 
 --------------------------------------------------------------------------------
 IMPORTANT SAFETY NOTES
 --------------------------------------------------------------------------------
-- Rebooting your phone stops the Shizuku service. You will need to re-run the ADB 
-  command in Step 3 after a reboot if you want to remove/restore more apps.
-- Do NOT remove core system components such as "Huawei Mobile Services" on Huawei 
-  or "Find Device" / "Mi Cloud" / "MIUI Security" on Xiaomi, as doing so may cause 
-  a bootloop requiring a factory reset.
-
-
-********************************************************************************
-PART 3: COMPLETE SOURCE CODE & GITHUB ACTIONS WORKFLOW (minSdk = 24)
-********************************************************************************
-
---------------------------------------------------------------------------------
-FILE 1: .github/workflows/build.yml
---------------------------------------------------------------------------------
-name: Build Android Debug APK
-
-on:
-  push:
-    branches: [ "main", "master" ]
-  workflow_dispatch:
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Set up JDK 17
-        uses: actions/setup-java@v4
-        with:
-          java-version: '17'
-          distribution: 'temurin'
-
-      - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v3
-        with:
-          gradle-version: '8.4'
-
-      - name: Build Debug APK
-        run: gradle assembleDebug
-
-      - name: Upload APK Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: app-debug
-          path: app/build/outputs/apk/debug/app-debug.apk
-
---------------------------------------------------------------------------------
-FILE 2: settings.gradle.kts
+- Rebooting your phone stops the Shizuku service. Re-run the ADB command in Step 3
+  after a reboot to remove or restore more apps.
+- Apps marked "System Core" (for example Settings, Phone, Package Installer, Permission
+  Controller, Android Shell) can break the phone. The app asks for an extra
+  confirmation, but be careful.
+- Do NOT remove "Huawei Mobile Services (HMS)" on Huawei, or "Find Device",
+  "Mi Cloud" or "MIUI Security" on Xiaomi, as this may cause a bootloop requiring a
+  factory reset.
+- Each new APK build is signed with a new key, so you may need to uninstall the old
+  app before installing a newer one. Uninstalling does not restore apps already removed.
