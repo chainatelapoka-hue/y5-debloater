@@ -30,5 +30,6 @@ The release build reads signing info from environment variables: `KEYSTORE_PATH`
 
 ## Notes
 
-- Signing keys are generated in CI on each run. If an installed build refuses to update over a previous one ("signature mismatch"), uninstall the old version first, or set a `KEYSTORE_PASSWORD` secret and keep one keystore for all builds.
+- CI generates a new signing key on every run. Android will refuse to update an installed build with a different key ("signature mismatch"), so uninstall the old Y5 Debloater before installing a newer APK. Uninstalling the app does not undo the apps it already removed or disabled.
+- For stable updates, create one keystore yourself, keep it safe, and store it as repository secrets. The workflow would then need a small change to decode it.
 - Do not remove system apps listed as `System Core` in the app. The app warns about them and requires an extra confirmation.
