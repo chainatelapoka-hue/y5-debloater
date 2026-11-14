@@ -1,0 +1,78 @@
+name: Build APK
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Install SDK components (platform 36.1, build-tools)
+        run: |
+          yes | sdkmanager --licenses > /dev/null
+          sdkmanager "platforms;android-36" "platforms;android-36.1" "build-tools;36.0.0" "platform-tools"
+
+      - name: Set up Gradle 9.3.1
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: "9.3.1"
+
+      - name: Create signing keystores (CI)
+        env:
+          KS_PASS: ${{ secrets.KEYSTORE_PASSWORD }}
+        run: |
+          PW="${KS_PASS:-y5debloater-ci-2026}"
+          # Release signing key (used by assembleRelease)
+          keytool -genkeypair -keystore "$GITHUB_WORKSPACE/my-upload-key.jks" \
+            -keyalg RSA -keysize 2048 -validity 10000 -alias upload \
+            -storepass "$PW" -keypass "$PW" -dname "CN=Y5 Debloater, O=CI, C=BD"
+          # Debug keystore (referenced by debugConfig in app/build.gradle.kts)
+          keytool -genkeypair -keystore "$GITHUB_WORKSPACE/debug.keystore" \
+            -keyalg RSA -keysize 2048 -validity 10000 -alias androiddebugkey \
+            -storepass android -keypass android -dname "CN=Android Debug, O=Android, C=US"
+          echo "KEYSTORE_PATH=$GITHUB_WORKSPACE/my-upload-key.jks" >> "$GITHUB_ENV"
+          echo "STORE_PASSWORD=$PW" >> "$GITHUB_ENV"
+          echo "KEY_PASSWORD=$PW" >> "$GITHUB_ENV"
+
+      - name: Build release APK
+        run: gradle :app:assembleRelease --no-daemon --stacktrace
+
+      - name: Prepare APK
+        run: |
+          cp app/build/outputs/apk/release/app-release.apk "$RUNNER_TEMP/Y5-Debloater.apk"
+          ls -lh "$RUNNER_TEMP/Y5-Debloater.apk"
+
+      - name: Upload APK as workflow artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Y5-Debloater-APK
+          path: ${{ runner.temp }}/Y5-Debloater.apk
+
+      - name: Publish GitHub Release (stable download link)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          TAG="build-${GITHUB_RUN_NUMBER}"
+          gh release create "$TAG" "$RUNNER_TEMP/Y5-Debloater.apk" \
+            --title "Y5 Debloater build ${GITHUB_RUN_NUMBER}" \
+            --notes "Commit: ${GITHUB_SHA}" \
+            --latest

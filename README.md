@@ -1,22 +1,34 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
-</div>
+# Y5 Debloater
 
-# Run and deploy your AI Studio app
+Shizuku-powered system app debloater and restorer for Huawei Y5 Prime 2018 (Android 8.1) and other Android devices.
 
-This contains everything you need to run your app locally.
+Apps are disabled or removed only for user 0 (`pm uninstall --user 0` / `pm disable-user --user 0`), so they can be restored at any time.
 
-View your app in AI Studio: https://ai.studio/apps/30bd1775-e225-4bea-82bf-aa3127aad8de
+## Download the APK
 
-## Run Locally
+Every push to `main` builds a new APK with GitHub Actions and publishes it as a release.
 
-**Prerequisites:**  [Android Studio](https://developer.android.com/studio)
+**Latest APK:** https://github.com/chainatelapoka-hue/y5-debloater/releases/latest/download/Y5-Debloater.apk
 
+All builds: https://github.com/chainatelapoka-hue/y5-debloater/releases
 
-1. Open Android Studio
-2. Select **Open** and choose the directory containing this project
-3. Allow Android Studio to fix any incompatibilities as it imports the project.
-4. Create a file named `.env` in the project directory and set `GEMINI_API_KEY` in that file to your Gemini API key (see `.env.example` for an example)
-5. Remove this line from the app's `build.gradle.kts` file: `signingConfig = signingConfigs.getByName("debugConfig")`
-6. Run the app on an emulator or physical device
-7. If you have already published your app in AI Studio, please [request upload key reset](https://support.google.com/googleplay/android-developer/answer/9842756#zippy=%2Crequest-an-upload-key-reset) in Google Play Console.
+## Install
+
+1. Install [Shizuku](https://shizuku.rikka.app/) on the phone and start it once (ADB start command is shown inside the app's ADB guide).
+2. Open the downloaded APK and install it (allow "Install unknown apps" for your browser/file manager).
+3. Open Y5 Debloater, grant the Shizuku permission, then tap an app to uninstall, disable, or restore it.
+
+## Build locally (optional)
+
+Requires JDK 17+ and the Android SDK (platform 36.1, build-tools 36.0.0).
+
+```bash
+gradle :app:assembleRelease
+```
+
+The release build reads signing info from environment variables: `KEYSTORE_PATH`, `STORE_PASSWORD`, `KEY_PASSWORD`. The `debugConfig` signing config expects `debug.keystore` in the project root. Both files are git-ignored.
+
+## Notes
+
+- Signing keys are generated in CI on each run. If an installed build refuses to update over a previous one ("signature mismatch"), uninstall the old version first, or set a `KEYSTORE_PASSWORD` secret and keep one keystore for all builds.
+- Do not remove system apps listed as `System Core` in the app. The app warns about them and requires an extra confirmation.
